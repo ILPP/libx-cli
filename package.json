@@ -10,7 +10,11 @@
     "eslint": "eslint --fix src --ext .ts --max-warnings=0",
     "prettier:comment": "自动格式化 src 目录下的所有 .ts 文件",
     "prettier": "prettier --write \"src/**/*.ts\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:comment": "构建",
+    "build": "npm run eslint && npm run prettier && rm -rf lib && tsc --build",
+    "commit:comment": "引导设置规范化的提交信息",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "",
@@ -33,5 +37,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,vue,less}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "eslint --fix"
   }
 }
